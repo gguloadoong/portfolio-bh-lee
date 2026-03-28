@@ -93,6 +93,38 @@ img { max-width: 100%; height: auto; }
 .d3{transition-delay:.3s!important}.d4{transition-delay:.4s!important}
 
 
+
+/* ─── CARD ENHANCE FLASH ──────────────────────── */
+#card-flash {
+  position:absolute;
+  width:80px; height:80px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(49,130,246,0.4) 40%, transparent 70%);
+  opacity:0;
+  pointer-events:none;
+  z-index:6;
+  will-change:transform,opacity;
+  filter:blur(2px);
+}
+#card-flash::after {
+  content:'';
+  position:absolute;
+  inset:-20px;
+  border-radius:50%;
+  background:radial-gradient(circle, transparent 30%, rgba(49,130,246,0.15) 60%, transparent 80%);
+  animation:none;
+}
+@keyframes flashBurst {
+  0% { transform:scale(0.3); opacity:0; }
+  30% { transform:scale(1.2); opacity:1; filter:blur(0px); }
+  60% { transform:scale(2.5); opacity:0.8; filter:blur(4px); }
+  100% { transform:scale(4); opacity:0; filter:blur(12px); }
+}
+@keyframes flashRays {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  40% { box-shadow: 0 0 40px 20px rgba(255,255,255,0.3), 0 0 80px 40px rgba(49,130,246,0.15); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
 /* ─── SKIP NAV ─────────────────────────────────── */
 .skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;padding:12px 24px;border-radius:0 0 12px 12px;font-size:14px;font-weight:700;z-index:9998;transition:top .3s}
 .skip-link:focus{top:0}
@@ -878,6 +910,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
       <div class="sc-sub">AI 기반 투자 동향 서비스</div>
     </div>
 
+    <div id="card-flash"></div>
     <div id="merged-panel">
       <div class="mp-inner">
         <div class="mp-label">About</div>
@@ -1556,7 +1589,9 @@ const PHASE = {
   CARD_STARTS: [0.22, 0.26, 0.30, 0.34],
   FLY_DUR: 0.12,
   FLOAT_END: 0.54,
-  MERGE_END: 0.68,
+  FLASH_START: 0.60,
+  FLASH_END: 0.66,
+  MERGE_END: 0.78,
   TEXT_REVEAL: 0.60,
   GLOW_START: 0.85
 };
@@ -1577,6 +1612,7 @@ const scCards = [
   document.getElementById('sc2'),
   document.getElementById('sc3')
 ];
+const cardFlash = document.getElementById('card-flash');
 const mergedPanel = document.getElementById('merged-panel');
 const panelTextEls = mergedPanel.querySelectorAll('.mp-label, .mp-title, .mp-desc, .chip');
 const panelChips = mergedPanel.querySelectorAll('.chip');
@@ -1712,11 +1748,17 @@ function heroScroll() {
       card.dataset.floating = 'true';
       card.dataset.gx = gridPos[i].x;
       card.dataset.gy = gridPos[i].y;
-    } else if (p <= 0.68) {
-      const mt = (p - 0.54) / 0.14;
+    } else if (p <= PHASE.FLASH_START) {
+      // 카드가 중앙으로 빠르게 수렴
+      const mt = (p - 0.54) / 0.06;
       const me = easeOutQuad(mt);
-      card.style.opacity = 1 - me;
-      card.style.transform = 'translate(' + (gridPos[i].x * (1 - me)) + 'px,' + (gridPos[i].y * (1 - me)) + 'px) scale(' + (1 - me * 0.4) + ')';
+      card.style.opacity = 1 - me * 0.7;
+      card.style.transform = 'translate(' + (gridPos[i].x * (1 - me)) + 'px,' + (gridPos[i].y * (1 - me)) + 'px) scale(' + (1 - me * 0.6) + ')';
+      card.dataset.floating = 'false';
+    } else if (p <= PHASE.FLASH_END) {
+      // 카드 사라짐 (플래시 구간)
+      card.style.opacity = 0;
+      card.style.transform = 'translate(0,0) scale(0.2)';
       card.dataset.floating = 'false';
     } else {
       card.style.opacity = 0;
@@ -1724,12 +1766,38 @@ function heroScroll() {
     }
   }
 
-  /* Phase 5~6: About 패널 slide-up */
-  if (p < 0.54) {
+  /* Phase 5: 플래시 이펙트 */
+  if (p < PHASE.FLASH_START) {
+    cardFlash.style.opacity = 0;
+    cardFlash.style.transform = 'scale(0.3)';
+  } else if (p <= PHASE.FLASH_END) {
+    const ft = (p - PHASE.FLASH_START) / 0.06;
+    if (ft < 0.4) {
+      // 수렴 → 밝아지며 커지기
+      const fe = ft / 0.4;
+      cardFlash.style.opacity = fe;
+      cardFlash.style.transform = 'scale(' + (0.3 + fe * 1.2) + ')';
+      cardFlash.style.filter = 'blur(0px)';
+      cardFlash.style.boxShadow = '0 0 ' + (fe * 60) + 'px ' + (fe * 30) + 'px rgba(255,255,255,' + (fe * 0.3) + '), 0 0 ' + (fe * 100) + 'px ' + (fe * 50) + 'px rgba(49,130,246,' + (fe * 0.15) + ')';
+    } else {
+      // 터지며 사라지기
+      const fe2 = (ft - 0.4) / 0.6;
+      const burst = easeOutQuart(fe2);
+      cardFlash.style.opacity = 1 - burst;
+      cardFlash.style.transform = 'scale(' + (1.5 + burst * 3) + ')';
+      cardFlash.style.filter = 'blur(' + (burst * 16) + 'px)';
+      cardFlash.style.boxShadow = '0 0 ' + ((1 - burst) * 80) + 'px ' + ((1 - burst) * 40) + 'px rgba(255,255,255,' + ((1 - burst) * 0.2) + ')';
+    }
+  } else {
+    cardFlash.style.opacity = 0;
+  }
+
+  /* Phase 6: About 패널 slide-up (플래시 후) */
+  if (p < PHASE.FLASH_END) {
     mergedPanel.style.transform = 'translateY(60px)';
     mergedPanel.style.opacity = 0;
-  } else if (p <= 0.68) {
-    const pt = (p - 0.54) / 0.14;
+  } else if (p <= PHASE.MERGE_END) {
+    const pt = (p - PHASE.FLASH_END) / (PHASE.MERGE_END - PHASE.FLASH_END);
     const pe = easeOutQuart(pt);
     mergedPanel.style.transform = 'translateY(' + (60 * (1 - pe)) + 'px)';
     mergedPanel.style.opacity = pe;
@@ -1739,7 +1807,7 @@ function heroScroll() {
   }
 
   /* Phase 7: 패널 텍스트 순차 등장 */
-  const textStartP = 0.60;
+  const textStartP = PHASE.FLASH_END + 0.02;
   if (p < textStartP) {
     for (let j = 0; j < panelTextEls.length; j++) {
       panelTextEls[j].style.opacity = 0;
@@ -1763,7 +1831,7 @@ function heroScroll() {
     });
     const glowSin = Math.sin(now * 0.002);
     mergedPanel.style.boxShadow = '0 24px 80px rgba(0,0,0,0.5)';
-  } else if (p > 0.68) {
+  } else if (p > PHASE.MERGE_END) {
     mergedPanel.style.boxShadow = '0 24px 80px rgba(0,0,0,0.5)';
     panelChips.forEach(function(chip) {
       chip.style.borderColor = '';
@@ -1790,7 +1858,7 @@ function startFloatLoop() {
   if (floatRafId) return;
   function loop() {
     const p = window.scrollY / maxScroll;
-    if ((p > 0.34 && p < PHASE.FLOAT_END) || p > PHASE.GLOW_START) {
+    if ((p > 0.34 && p < PHASE.FLOAT_END) || p > 0.88) {
       heroScroll();
     }
     floatRafId = requestAnimationFrame(loop);
