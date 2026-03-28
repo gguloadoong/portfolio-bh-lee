@@ -195,7 +195,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   width:min(320px, 75vw);
   background:rgba(255,255,255,0.04);
   border:1px solid rgba(255,255,255,0.10);
-  border-radius:22px; text-align:center;
+  border-radius:12px; text-align:center;
   backdrop-filter:blur(8px);
   box-shadow:0 12px 40px rgba(0,0,0,0.3);
   opacity:0;
@@ -224,7 +224,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .sc-role {
   font-size:10px; font-weight:600; color:var(--blue);
   margin-top:6px; padding:3px 10px; display:inline-block;
-  border-radius:100px; background:rgba(49,130,246,0.1);
+  border-radius:6px; background:rgba(49,130,246,0.1);
   border:1px solid rgba(49,130,246,0.2);
 }
 .sc-sub { font-size:12px; color:rgba(255,255,255,0.45); margin-top:10px; padding:0 16px 16px; line-height:1.5; }
@@ -234,7 +234,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   width:min(850px, calc(100vw - 60px));
   height:auto;
   min-height:50vh;
-  border-radius:24px;
+  border-radius:12px;
   background:rgba(12,18,32,0.95);
   border:1px solid rgba(49,130,246,0.12);
   box-shadow:0 24px 80px rgba(0,0,0,0.5), 0 0 40px rgba(49,130,246,0.06);
@@ -252,7 +252,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   width:100%;
 }
 .mp-label {
-  display:inline-flex; padding:4px 14px; border-radius:100px;
+  display:inline-flex; padding:4px 14px; border-radius:6px;
   background:rgba(49,130,246,.08); border:1px solid rgba(49,130,246,.15);
   font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
   color:var(--bluel); margin-bottom:16px;
@@ -293,7 +293,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 /* ─── SECTION COMMON ────────────────────────────── */
 .slbl{
   display:inline-flex;align-items:center;gap:6px;
-  padding:4px 12px;border-radius:100px;
+  padding:4px 12px;border-radius:6px;
   background:rgba(162,196,255,.08);border:1px solid rgba(162,196,255,.15);
   font-size:10px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--bluel);
@@ -305,7 +305,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 
 
 /* ─── CHIPS ─────────────────────────────────────── */
-.chip{font-size:11px;font-weight:500;padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.12);color:var(--t2);background:rgba(255,255,255,0.03);opacity:0;transform:translateY(15px);transition:border-color 0.3s,box-shadow 0.3s}
+.chip{font-size:11px;font-weight:500;padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);color:var(--t2);background:rgba(255,255,255,0.03);opacity:0;transform:translateY(15px);transition:border-color 0.3s,box-shadow 0.3s}
 
 /* ─── STRENGTHS — 기획의 기준 ────────────────────── */
 #strengths{
@@ -327,15 +327,14 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.08);
   border-top:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(12px);
-  border-radius:24px;padding:28px 24px;
+  border-radius:12px;padding:28px 24px;
   will-change:transform,opacity;
   position:relative;overflow:hidden;
   cursor:pointer;
   transition:border-color .35s,background .35s;
 }
 .sc-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:24px 24px 0 0;
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0;
 }
 .sc-card:nth-child(1)::before{background:linear-gradient(90deg,#3182f6,#a2c4ff)}
 .sc-card:nth-child(2)::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
@@ -345,7 +344,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .sc-title{font-size:17px;font-weight:800;letter-spacing:-.04em;margin-bottom:12px;line-height:1.25;color:var(--t);word-break:keep-all}
 .sc-desc{font-size:13px;color:var(--t2);line-height:1.85;word-break:keep-all}
 .kw { color: var(--bluel); font-weight: 600; }
-.sc-tag{display:inline-block;margin-top:18px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;background:rgba(49,130,246,.10);border:1px solid rgba(49,130,246,.2);color:var(--bluel)}
+.sc-tag{display:inline-block;margin-top:18px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:6px;background:rgba(49,130,246,.10);border:1px solid rgba(49,130,246,.2);color:var(--bluel)}
 
 
 /* ─── MARKETRADAR ───────────────────────────────── */
@@ -428,7 +427,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   max-height:none;
   background:rgba(188,202,255,.03);
   border:1px solid var(--bd);
-  border-radius:24px;overflow:hidden;
+  border-radius:12px;overflow:hidden;
   position:relative;
   transition:transform .5s var(--ease),opacity .5s var(--ease),border-color .3s,box-shadow .5s var(--ease),filter .5s var(--ease);
   transform:scale(0.88);
@@ -440,10 +439,10 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .cf-card.cf-active{
   transform:scale(1);opacity:1;
   border-color:rgba(49,130,246,.30);
-  box-shadow:0 0 60px rgba(49,130,246,.22),0 24px 64px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);
+  box-shadow:0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08);
   filter:brightness(1);
 }
-.cacc{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);opacity:0;transition:opacity .3s}
+.cacc{position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,255,255,0.1);opacity:0;transition:opacity .3s}
 .cf-card.cf-active .cacc{opacity:1}
 
 .cin{display:grid;grid-template-columns:200px 1fr}
@@ -547,7 +546,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .flow-node.dest{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.25);color:rgba(52,211,153,.9)}
 .flow-arrow{color:var(--bluel);font-size:16px;font-weight:700;opacity:.6}
 .flow-group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.flow-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px}
+.flow-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px}
 .flow-tag.coin{color:#a2c4ff;background:rgba(162,196,255,.12);border:1px solid rgba(162,196,255,.25)}
 .flow-tag.etf{color:#a78bfa;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.25)}
 .flow-tag.stock{color:#34d399;background:rgba(52,211,153,.10);border:1px solid rgba(52,211,153,.22)}
@@ -588,7 +587,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .pgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px;margin-top:52px}
 .pcard{
   background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
-  border-radius:22px;padding:28px 24px;
+  border-radius:12px;padding:28px 24px;
   display:flex;flex-direction:column;gap:14px;
   transition:border-color .35s,background .35s,transform .35s,box-shadow .35s;
   position:relative;overflow:hidden;
@@ -598,25 +597,25 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 /* custody 상단라인 삭제 */
 /* giwa 상단라인 삭제 */
 /* udc 상단라인 삭제 */
-.pcard::before{content:'';position:absolute;inset:0;border-radius:22px;opacity:0;transition:opacity .4s;pointer-events:none}
+.pcard::before{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity .4s;pointer-events:none}
 /* hover → @media(hover:hover) 블록으로 이동됨 */
 .pcard:hover::before{opacity:1}
-.pcard-custody{border-color:rgba(49,130,246,.15)}
+.pcard-custody{border-color:rgba(49,130,246,.15);background:color-mix(in oklch, #3182f6 4%, var(--surf))}
 .pcard-custody::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(49,130,246,.13) 0%,transparent 70%)}
-.pcard-custody:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 40px rgba(49,130,246,.18),inset 0 1px 0 rgba(49,130,246,.2)}
-.pcard-giwa{border-color:rgba(49,130,246,.15)}
+.pcard-custody:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.pcard-giwa{border-color:rgba(49,130,246,.15);background:color-mix(in oklch, #14b8a6 4%, var(--surf))}
 .pcard-giwa::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(49,130,246,.15) 0%,transparent 70%)}
-.pcard-giwa:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 40px rgba(49,130,246,.2),inset 0 1px 0 rgba(162,196,255,.2)}
-.pcard-udc{border-color:rgba(139,92,246,.15)}
+.pcard-giwa:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.pcard-udc{border-color:rgba(139,92,246,.15);background:color-mix(in oklch, #8b5cf6 4%, var(--surf))}
 .pcard-udc::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(139,92,246,.15) 0%,transparent 70%)}
-.pcard-udc:hover{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.04);box-shadow:0 8px 40px rgba(139,92,246,.2),inset 0 1px 0 rgba(139,92,246,.2)}
+.pcard-udc:hover{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.04);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .pbadge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.45)}
 .pname{font-size:26px;font-weight:900;letter-spacing:-.055em;line-height:1;color:#fff}
 .phl{display:inline-block;font-size:10.5px;font-weight:700;color:#3182f6;background:rgba(49,130,246,0.1);border:1px solid rgba(49,130,246,0.22);border-radius:4px;padding:3px 9px}
 .pchall{font-size:12.5px;font-style:italic;color:rgba(255,255,255,0.35);border-left:2px solid rgba(49,130,246,.3);padding-left:11px;line-height:1.6;word-break:keep-all}
 .pdesc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.78;word-break:keep-all}
 .ptags{display:flex;flex-wrap:wrap;gap:5px}
-.pt{font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid;font-weight:500}
+.pt{font-size:11px;padding:3px 9px;border-radius:6px;border:1px solid;font-weight:500}
 .pto{color:#3182f6;border-color:rgba(49,130,246,.22);background:rgba(49,130,246,.06)}
 .ptb{color:var(--bluel);border-color:rgba(162,196,255,.2);background:rgba(162,196,255,.05)}
 .ptw{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
@@ -677,7 +676,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
 /* 왼쪽: 이름 + 직함 */
 .ft-name{font-size:28px;font-weight:900;letter-spacing:-.06em;margin-bottom:12px}
 .ft-roles{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
-.ft-role{font-size:11px;font-weight:600;padding:5px 13px;border-radius:100px;border:1px solid var(--bd2);color:var(--t2);background:rgba(188,202,255,.05)}
+.ft-role{font-size:11px;font-weight:600;padding:5px 13px;border-radius:6px;border:1px solid var(--bd2);color:var(--t2);background:rgba(188,202,255,.05)}
 .ft-contact{display:flex;flex-direction:column;gap:6px}
 .ft-email{font-size:13px;color:var(--bluel);text-decoration:none;font-weight:600;transition:color .15s}
 .ft-email:hover{color:#fff}
@@ -836,7 +835,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
 }
 @media(hover:hover){
   .sc-card:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.05)}
-  .pcard:hover{transform:translateY(-5px)}
+  .pcard:hover{transform:translateY(-3px)}
 }
 
 
@@ -1060,7 +1059,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
                     <div class="flow-step good">서비스 내 순환 탐색 ↩</div>
                   </div>
                 </div>
-                <div class="cins"><strong>이탈 포인트를 탐색 진입점으로 바꾸면 사용자는 더 깊이 들어온다.</strong> 기능의 목적은 정보 제공이 아니라 경험의 완결이다.</div>
+                <div class="cins"><strong>뉴스를 읽고 나가는 게 아니라, 뉴스에서 다음 종목으로 자연스럽게 넘어가게 만들었다.</strong></div>
               </div>
             </div>
           </div>
@@ -1079,7 +1078,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
               <div class="cb">
                 <div class="cilist">
                   <div class="ci"><span class="cil">문제 정의</span><span class="cit">비트코인 관련 뉴스를 클릭했을 때 뉴스 본문만 보여주면, 투자자의 실제 탐색 흐름과 맞지 않는다.</span></div>
-                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">투자자는 비트코인 뉴스를 보면서 자연스럽게 연관 종목을 떠올린다. 이더리움·솔라나·리플(ETH, SOL, XRP) 같은 대표 코인은 물론, IBIT·BITX 같은 비트코인 ETF, MSTR(스트래티지)·COIN(코인베이스) 같은 관련 주식까지. <strong>투자자의 사고 흐름 자체를 뉴스 내 연관종목으로 구현하면, 하나의 뉴스가 다른 종목 탐색으로 자연스럽게 이어진다.</strong></span></div>
+                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">투자자는 비트코인 뉴스를 보면서 자연스럽게 연관 종목을 떠올린다. 이더리움·솔라나·리플(ETH, SOL, XRP) 같은 대표 코인은 물론, IBIT·BITX 같은 비트코인 ETF, MSTR(스트래티지)·COIN(코인베이스) 같은 관련 주식까지. <strong>투자자의 사고 흐름 자체를 뉴스 내 연관종목으로 구현하면, 하나의 뉴스가 다른 종목 탐색으로 자연스럽게 이어진다.</strong> 뉴스에서 종목으로 가는 경로만으로는 부족하다. 종목 차트를 보다가 '이 종목이 왜 움직이지?'를 확인하려면 다시 뉴스 탭으로 돌아가야 했다. 뉴스→종목, 종목→뉴스 양방향으로 연결해야 탐색이 끊기지 않는다.</span></div>
                   <div class="ci"><span class="cil">기대되는 결과</span><span class="cit">뉴스에서 연관 종목으로 이어지는 탐색 흐름이 자연스러워지기를 기대한다.</span></div>
                 </div>
                 <div class="flow-v2">
@@ -1113,19 +1112,19 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
                     <div class="fv2-branches">
                       <div class="fv2-branch">
                         <div class="fv2-node blue">관련 종목</div>
-                        <div class="fv2-arrow">→</div>
+                        <div class="fv2-arrow">⇄</div>
                         <div class="fv2-node">종목 상세</div>
                       </div>
                       <div class="fv2-branch">
                         <div class="fv2-node blue">관련 뉴스</div>
-                        <div class="fv2-arrow">→</div>
+                        <div class="fv2-arrow">⇄</div>
                         <div class="fv2-node">뉴스 상세</div>
-                        <div class="fv2-loop">↩ 탐색 순환</div>
+                        <div class="fv2-loop">↩ 양방향 순환</div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="cins"><strong>투자자의 사고 흐름을 제품의 탐색 구조로 옮기면, 뉴스 한 건이 여러 종목으로의 진입점이 된다.</strong></div>
+                <div class="cins"><strong>비트코인 뉴스를 보면 이더리움도 궁금해진다. 그 흐름을 끊지 않는 게 핵심이다.</strong></div>
               </div>
             </div>
           </div>
@@ -1157,7 +1156,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
                   <div class="ci"><span class="cil">가설 · 판단</span><span class="cit"><strong>"데이터가 없어서 못 보여주는 것"과 "데이터가 있는데 숨기는 것"은 다르다.</strong> 트레이더는 장마감 후에도 어제의 급등/급락을 복기한다. 데이터는 있다. 전체 숨김 대신 딤 처리(opacity 60%) + "🌙 장마감 · 전일 종가 기준" 인라인 라벨로 상태를 표현했다.</span></div>
                   <div class="ci"><span class="cil">기대되는 결과</span><span class="cit">빈 화면 대신 딤 처리와 인라인 라벨로 장마감 상태를 명시하면, 사용자의 복기 루틴을 끊지 않는 구조가 되기를 기대한다.</span></div>
                 </div>
-                <div class="cins"><strong>빈 화면과 딤 처리는 다른 메시지를 전달한다.</strong> "없음"을 표현하는 방식이 UX의 수준을 결정한다.</div>
+                <div class="cins"><strong>데이터가 없는 게 아니라 장이 닫힌 것뿐이다. 그 차이를 화면에서 구분해야 한다.</strong></div>
               </div>
             </div>
           </div>
@@ -1179,10 +1178,10 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
                 </div>
                 <div class="cilist">
                   <div class="ci"><span class="cil">문제 정의</span><span class="cit">신규 가입 직후 첫 세션에서의 이탈 패턴을 보다가 문제를 발견했다. 관심종목 섹션이 화면의 큰 영역을 차지하는데, 신규 사용자는 아무 종목도 등록하지 않은 상태다. 첫 진입 시 빈 화면이 크게 펼쳐진다. "이 앱에 콘텐츠가 없나?"라는 첫인상이 만들어졌다.</span></div>
-                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">UI를 <strong>"데이터가 가득할 때"</strong>가 아니라 <strong>"아무것도 없을 때"</strong>를 기준으로 설계해야 한다는 걸 놓쳤다. 관심종목 영역 축소, 빈 상태에서 인기 종목 추천 노출로 해결.</span></div>
+                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">빈 화면을 '빈 상태 메시지'로만 처리하면 위기다. 관심종목 영역 자체를 온보딩 도구로 만들었다. 인기 종목 칩을 터치 한 번으로 추가할 수 있게 하고, 추가 즉시 가격과 등락률이 표시되게 했다. <strong>'아무것도 없는 화면'이 '핵심 기능을 안내하는 첫 단계'가 된다.</strong></span></div>
                   <div class="ci"><span class="cil">기대되는 결과</span><span class="cit">관심종목 영역 축소와 인기 종목 추천을 통해, 신규 사용자도 첫 진입에서 서비스의 유용함을 느끼기를 기대한다.</span></div>
                 </div>
-                <div class="cins"><strong>서비스의 첫 화면은 데이터가 많을 때가 아니라 아무것도 없을 때를 기준으로 설계해야 한다.</strong> 기존 사용자 시선만 가지면 신규 사용자 이탈을 놓친다.</div>
+                <div class="cins"><strong>빈 화면은 실패가 아니라 온보딩의 시작이다. 인기 종목 한 번 탭하면 바로 내 화면이 된다.</strong></div>
               </div>
             </div>
           </div>
@@ -1232,7 +1231,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
                     </div>
                   </div>
                 </div>
-                <div class="cins"><strong>데이터가 많을수록 첫 화면은 단순해야 한다.</strong> 서비스가 먼저 방향을 제안해야 사용자는 움직인다.</div>
+                <div class="cins"><strong>첫 화면에서 '지금 뭐가 중요한지'를 먼저 알려줘야 사용자가 움직인다.</strong></div>
               </div>
             </div>
           </div>
@@ -1245,50 +1244,52 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
               <div class="cm">
                 <div class="cnum">06</div>
                 <div>
-                  <div class="ctag">서비스 본질 재정의</div>
-                  <h3 class="ctitle" style="margin:0">"교육 앱이 되어가고<br>있었다"</h3>
+                  <div class="ctag">정보의 깊이 설계</div>
+                  <h3 class="ctitle" style="margin:0">"다 보여주면 되는 거<br>아니야?"</h3>
                 </div>
               </div>
               <div class="cb">
                 <div class="cilist">
-                  <div class="ci"><span class="cil">문제 정의</span><span class="cit">투자 편향을 알려주는 데일리 콘텐츠 앱을 MVP까지 만들었다. 하지만 첫 사용자 테스트에서 핵심 질문이 나왔다. <strong>"이 서비스에서 사용자에게 제공하고자 하는 가치, 재미 요소, 미니앱으로써 메커니즘은 무엇인가?"</strong> 시나리오가 뻔했고, 설명이 길었고, 반전보다 정보가 많았다.</span></div>
-                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">서비스의 정의 자체가 틀렸다. "행동경제학을 재미있게 알려주는 앱"이 아니라 <strong>"투자 상황 앞에서 내 진짜 모습을 발견하는 경험"</strong>이어야 한다. 경쟁 상대는 듀오링고(교육)가 아니라 MBTI(자기발견+공유)다. 투자 B급 감성("존버, 물림, 떡상, 공황매도")으로 피벗했다.</span></div>
-                  <div class="ci"><span class="cil">기대되는 결과</span><span class="cit">교육 → 자기발견으로 프레임을 전환하면, "설마 나도 이랬어?" 라는 공감이 공유 욕구로 이어지기를 기대한다.</span></div>
+                  <div class="ci"><span class="cil">문제 정의</span><span class="cit">코인 시세, 급등·급락, 뉴스, 이벤트, 관심종목 — 데이터는 다 있다. 그런데 홈 화면이 너무 길었다. 사용자가 원하는 깊이는 상황마다 다른데, 모든 정보를 같은 무게로 나열하고 있었다.</span></div>
+                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">정보에는 3개의 깊이가 필요하다. <strong>글랜스(0.5초)</strong>: "시장 괜찮나?" — 숫자, 색깔, 방향만으로 답을 준다. <strong>요약(10초)</strong>: "왜 움직이지?" — AI 요약, 관련 종목, 한 줄 이유. <strong>상세(1분)</strong>: "더 파볼까" — 원문 기사, 전체 차트, 종합 분석. 글랜스에 상세를 섞으면 둘 다 망한다. 사용자가 원할 때 깊이 들어갈 수 있는 경로만 열어두면 된다.</span></div>
+                  <div class="ci"><span class="cil">기대되는 결과</span><span class="cit">홈 화면은 글랜스 중심으로 가볍게, 관심 있는 항목만 탭해서 요약 → 상세로 들어가는 구조가 되면 "홈이 너무 길다"는 문제가 해결된다.</span></div>
                 </div>
                 <div class="flow-v2">
                   <div class="fv2-section before">
-                    <div class="fv2-label">Before — 교육 앱</div>
+                    <div class="fv2-label">Before — 동일 무게 나열</div>
                     <div class="fv2-row">
-                      <div class="fv2-node">편향 설명</div>
+                      <div class="fv2-node">지수</div>
                       <div class="fv2-arrow">→</div>
-                      <div class="fv2-node">시나리오 읽기</div>
+                      <div class="fv2-node">급등급락</div>
                       <div class="fv2-arrow">→</div>
-                      <div class="fv2-node" style="border-color:rgba(239,68,68,0.3);color:#fca5a5">정보 과잉<small>반전 약함</small></div>
+                      <div class="fv2-node">뉴스 전문</div>
                       <div class="fv2-arrow">→</div>
-                      <div class="fv2-node" style="border-color:rgba(239,68,68,0.3);color:#fca5a5">이탈</div>
+                      <div class="fv2-node">이벤트 전체</div>
+                      <div class="fv2-arrow">→</div>
+                      <div class="fv2-node" style="border-color:rgba(239,68,68,0.3);color:#fca5a5">스크롤 지옥</div>
                     </div>
                   </div>
-                  <div class="fv2-divider">▼ 피벗</div>
+                  <div class="fv2-divider">▼ 개선</div>
                   <div class="fv2-section after">
-                    <div class="fv2-label">After — 자기발견 게임</div>
+                    <div class="fv2-label">After — 3단계 깊이</div>
                     <div class="fv2-row">
-                      <div class="fv2-node accent">투자 딜레마<small>B급 감성</small></div>
+                      <div class="fv2-node accent">Level 1 글랜스<small>홈</small></div>
                       <div class="fv2-arrow">→</div>
-                      <div class="fv2-node accent">A/B 선택<small>"당연히 A지"</small></div>
-                      <div class="fv2-arrow">→</div>
-                      <div class="fv2-node blue">반전 공개<small>"그게 편향이에요"</small></div>
+                      <div class="fv2-node accent">지수 ↑↓ · 급등 TOP3<small>숫자+색깔</small></div>
                     </div>
                     <div class="fv2-row" style="margin-top:8px">
-                      <div class="fv2-node blue">다른 사람 통계<small>"나만 이런 게 아니었어"</small></div>
+                      <div class="fv2-node blue">Level 2 요약<small>탭 → 패널</small></div>
                       <div class="fv2-arrow">→</div>
-                      <div class="fv2-node blue">투자 성향 누적</div>
+                      <div class="fv2-node blue">AI 요약 · 관련 종목<small>10초 소비</small></div>
+                    </div>
+                    <div class="fv2-row" style="margin-top:8px">
+                      <div class="fv2-node blue">Level 3 상세<small>더보기 → 페이지</small></div>
                       <div class="fv2-arrow">→</div>
-                      <div class="fv2-node accent">공유<small>"너도 해봐"</small></div>
-                      <div class="fv2-loop">↩ 매일 반복</div>
+                      <div class="fv2-node blue">원문 기사 · 전체 차트<small>섹터 히트맵</small></div>
                     </div>
                   </div>
                 </div>
-                <div class="cins"><strong>서비스의 정의가 틀리면 기능을 아무리 잘 만들어도 소용없다.</strong> "무엇을 만드는가"보다 "왜 사용자가 다시 오는가"를 먼저 답해야 한다.</div>
+                <div class="cins"><strong>얼마나 보여주느냐가 아니라 어떤 깊이로 보여주느냐가 문제다.</strong></div>
               </div>
             </div>
           </div>
