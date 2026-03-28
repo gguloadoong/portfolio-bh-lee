@@ -1689,9 +1689,40 @@ function easeOutQuad(t) { return 1 - Math.pow(1 - t, 2); }
 function easeInOutQuart(t) { return t < 0.5 ? 8*t*t*t*t : 1 - Math.pow(-2*t+2, 4)/2; }
 
 /* 메인 스크롤 핸들러 */
+let lastTrembleTime = 0;
+let trembleHoldProgress = 0;
+
 function heroScroll() {
-  const p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+  let p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
   const now = performance.now();
+  
+  // ── A: 떨림 구간 스크롤 감속 ──
+  // CONVERGE_END(0.58) ~ TREMBLE_END(0.68) 구간에서 진행률을 절반 속도로
+  const cEnd = PHASE.CONVERGE_END;
+  const tEnd = PHASE.TREMBLE_END;
+  if (p > cEnd && p < tEnd) {
+    const rawT = (p - cEnd) / (tEnd - cEnd);  // 0~1 원래 진행률
+    const slowT = rawT * 0.5;  // 절반 속도
+    p = cEnd + slowT * (tEnd - cEnd);
+  } else if (p >= tEnd) {
+    // 감속 구간 이후는 보정하여 연결
+    const excess = p - tEnd;
+    p = cEnd + (tEnd - cEnd) * 0.5 + excess;
+    p = Math.min(1, p);
+  }
+  
+  // ── B: 최소 재생 시간 보장 (0.6초) ──
+  if (p >= cEnd && p < tEnd + 0.05) {
+    if (lastTrembleTime === 0) lastTrembleTime = now;
+    const elapsed = now - lastTrembleTime;
+    if (elapsed < 600) {
+      // 0.6초 미만이면 진행률을 떨림 구간 안에 가두기
+      const maxP = cEnd + (tEnd - cEnd) * Math.min(1, elapsed / 600);
+      p = Math.min(p, maxP);
+    }
+  } else if (p < cEnd) {
+    lastTrembleTime = 0;
+  }
 
   /* 스크롤 힌트 fade-out */
   scrollHint.style.opacity = Math.max(0, 1 - p * 10);
