@@ -234,7 +234,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   border-radius:12px;
   background:rgba(12,18,32,0.95);
   border:1px solid rgba(49,130,246,0.12);
-  box-shadow:0 24px 80px rgba(0,0,0,0.5), 0 0 40px rgba(49,130,246,0.06);
+  box-shadow:0 24px 80px rgba(0,0,0,0.5);
   opacity:0;
   transform:translateY(60px);
   will-change:transform,opacity;
@@ -337,6 +337,14 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .sc-card:nth-child(2)::before{background:var(--blue);opacity:.5}
 .sc-card:nth-child(3)::before{background:var(--blue);opacity:.3}
 /* hover → @media(hover:hover) 블록으로 이동됨 */
+
+/* color-mix 미지원 브라우저 폴백 */
+@supports not (background: color-mix(in oklch, red 50%, blue)) {
+  .pcard-custody{background:var(--surf)}
+  .pcard-giwa{background:var(--surf)}
+  .pcard-udc{background:var(--surf)}
+}
+
 .sc-num{font-size:10px;font-weight:700;color:var(--bluel);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
 .sc-title{font-size:17px;font-weight:800;letter-spacing:-.04em;margin-bottom:12px;line-height:1.25;color:var(--t);word-break:keep-all}
 .sc-desc{font-size:13px;color:var(--t2);line-height:1.85;word-break:keep-all}
@@ -595,13 +603,21 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 /* udc 상단라인 삭제 */
 .pcard::before{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity .4s;pointer-events:none}
 /* hover → @media(hover:hover) 블록으로 이동됨 */
+
+/* color-mix 미지원 브라우저 폴백 */
+@supports not (background: color-mix(in oklch, red 50%, blue)) {
+  .pcard-custody{background:var(--surf)}
+  .pcard-giwa{background:var(--surf)}
+  .pcard-udc{background:var(--surf)}
+}
+
 .pcard:hover::before{opacity:1}
 .pcard-custody{border-color:rgba(49,130,246,.15);background:color-mix(in oklch, #3182f6 4%, var(--surf))}
 .pcard-custody::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(49,130,246,.13) 0%,transparent 70%)}
-.pcard-custody:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.pcard-custody:hover{border-color:rgba(255,255,255,.15);background:color-mix(in oklch, #3182f6 6%, var(--surf));box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .pcard-giwa{border-color:rgba(49,130,246,.15);background:color-mix(in oklch, #14b8a6 4%, var(--surf))}
 .pcard-giwa::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(49,130,246,.15) 0%,transparent 70%)}
-.pcard-giwa:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.pcard-giwa:hover{border-color:rgba(255,255,255,.15);background:color-mix(in oklch, #14b8a6 6%, var(--surf));box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .pcard-udc{border-color:rgba(139,92,246,.15);background:color-mix(in oklch, #8b5cf6 4%, var(--surf))}
 .pcard-udc::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(139,92,246,.15) 0%,transparent 70%)}
 .pcard-udc:hover{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.04);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
@@ -660,7 +676,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .clh{font-size:clamp(32px,5vw,64px);font-weight:900;letter-spacing:-.065em;line-height:1.07;margin-bottom:20px;word-break:keep-all}
 .cldesc{font-size:16px;color:var(--t2);line-height:1.82;margin-bottom:48px;word-break:keep-all}
 .cta-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap}
-.cta{display:inline-flex;align-items:center;gap:10px;background:var(--toss);color:#fff;font-size:15px;font-weight:700;padding:15px 34px;border-radius:14px;text-decoration:none;box-shadow:0 8px 32px rgba(49,130,246,.4);transition:filter .15s,transform .2s}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--toss);color:#fff;font-size:15px;font-weight:700;padding:15px 34px;border-radius:14px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:filter .15s,transform .2s}
 .cta:hover{filter:brightness(1.12);transform:translateY(-2px)}
 .cta-email{font-size:13px;color:var(--t3)}
 
@@ -693,7 +709,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
 .ft-keywords{display:flex;flex-direction:column;gap:10px}
 .ft-kw{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--t2)}
 .ft-kw::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--bluel);flex-shrink:0;transition:box-shadow .3s,background .3s}
-.ft-kw:hover::before{background:#3182f6;box-shadow:0 0 6px 2px rgba(49,130,246,.6),0 0 12px 4px rgba(49,130,246,.3)}
+.ft-kw:hover::before{background:var(--blue);box-shadow:0 0 4px rgba(255,255,255,.2)}
 .ft-kw strong{color:var(--t);font-weight:700;margin-right:4px}
 
 /* 하단 카피라이트 */
@@ -1691,7 +1707,7 @@ function heroScroll() {
   hsBot2.style.transform = 'translateY(' + ((1 - t2) * 45) + 'vh)';
 
   if (t2 >= 0.95 && !nameGlowed) {
-    hsBot2.style.textShadow = '0 0 30px rgba(49,130,246,0.5), 0 0 60px rgba(49,130,246,0.3)';
+    hsBot2.style.textShadow = '0 0 20px rgba(255,255,255,0.15), 0 0 40px rgba(255,255,255,0.08)';
     setTimeout(function() {
       hsBot2.style.transition = 'text-shadow 1.5s ease-out';
       hsBot2.style.textShadow = 'none';
@@ -1790,13 +1806,13 @@ function heroScroll() {
   if (p > 0.85) {
     panelChips.forEach(function(chip, i) {
       const pulse = Math.sin(now * 0.003 + i * 1.2) * 0.5 + 0.5;
-      chip.style.borderColor = 'rgba(49,130,246,' + (0.12 + pulse * 0.2) + ')';
-      chip.style.boxShadow = '0 0 ' + (pulse * 8) + 'px rgba(49,130,246,' + (pulse * 0.15) + ')';
+      chip.style.borderColor = 'rgba(255,255,255,' + (0.08 + pulse * 0.08) + ')';
+      chip.style.boxShadow = '0 0 ' + (pulse * 6) + 'px rgba(255,255,255,' + (pulse * 0.06) + ')';
     });
     const glowSin = Math.sin(now * 0.002);
-    mergedPanel.style.boxShadow = '0 24px 80px rgba(0,0,0,0.5), 0 0 ' + (40 + glowSin * 15) + 'px rgba(49,130,246,' + (0.06 + glowSin * 0.04) + ')';
+    mergedPanel.style.boxShadow = '0 24px 80px rgba(0,0,0,0.5)';
   } else if (p > 0.68) {
-    mergedPanel.style.boxShadow = '0 24px 80px rgba(0,0,0,0.5), 0 0 40px rgba(49,130,246,0.06)';
+    mergedPanel.style.boxShadow = '0 24px 80px rgba(0,0,0,0.5)';
     panelChips.forEach(function(chip) {
       chip.style.borderColor = '';
       chip.style.boxShadow = '';
