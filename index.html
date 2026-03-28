@@ -269,7 +269,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 /* ─── SECTION COMMON ────────────────────────────── */
 .slbl{
   display:inline-flex;align-items:center;gap:6px;
-  padding:4px 12px;border-radius:100px;
+  padding:4px 12px;border-radius:6px;
   background:rgba(162,196,255,.08);border:1px solid rgba(162,196,255,.15);
   font-size:10px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--bluel);
@@ -281,7 +281,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 
 
 /* ─── CHIPS ─────────────────────────────────────── */
-.chip{font-size:11px;font-weight:500;padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.12);color:var(--t2);background:rgba(255,255,255,0.03);opacity:0;transform:translateY(15px);transition:border-color 0.3s,box-shadow 0.3s}
+.chip{font-size:11px;font-weight:500;padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);color:var(--t2);background:rgba(255,255,255,0.03);opacity:0;transform:translateY(15px);transition:border-color 0.3s,box-shadow 0.3s}
 
 /* ─── STRENGTHS — 기획의 기준 ────────────────────── */
 #strengths{
@@ -300,18 +300,17 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 }
 #sc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .sc-card{
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-  border-top:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(12px);
-  border-radius:24px;padding:28px 24px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:12px;padding:28px 24px;
   will-change:transform,opacity;
   position:relative;overflow:hidden;
   cursor:pointer;
   transition:border-color .35s,background .35s;
 }
 .sc-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:24px 24px 0 0;
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0;
+  display:none;
 }
 .sc-card:nth-child(1)::before{background:linear-gradient(90deg,#3182f6,#a2c4ff)}
 .sc-card:nth-child(2)::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
@@ -321,7 +320,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .sc-title{font-size:17px;font-weight:800;letter-spacing:-.04em;margin-bottom:12px;line-height:1.25;color:var(--t);word-break:keep-all}
 .sc-desc{font-size:13px;color:var(--t2);line-height:1.85;word-break:keep-all}
 .kw { color: var(--bluel); font-weight: 600; }
-.sc-tag{display:inline-block;margin-top:18px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;background:rgba(49,130,246,.10);border:1px solid rgba(49,130,246,.2);color:var(--bluel)}
+.sc-tag{display:inline-block;margin-top:18px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:5px;background:rgba(49,130,246,.10);border:1px solid rgba(49,130,246,.2);color:var(--bluel)}
 
 
 /* ─── MARKETRADAR ───────────────────────────────── */
@@ -403,8 +402,8 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   flex:0 0 min(800px,83vw);
   max-height:none;
   background:rgba(188,202,255,.03);
-  border:1px solid var(--bd);
-  border-radius:24px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:12px;overflow:hidden;
   position:relative;
   transition:transform .5s var(--ease),opacity .5s var(--ease),border-color .3s,box-shadow .5s var(--ease),filter .5s var(--ease);
   transform:scale(0.88);
@@ -415,17 +414,17 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 .cf-card:not(.cf-active):hover{opacity:0.7;filter:brightness(0.9)}
 .cf-card.cf-active{
   transform:scale(1);opacity:1;
-  border-color:rgba(49,130,246,.30);
-  box-shadow:0 0 60px rgba(49,130,246,.22),0 24px 64px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,0.12);
+  box-shadow:0 16px 48px rgba(0,0,0,0.4);
   filter:brightness(1);
 }
-.cacc{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);opacity:0;transition:opacity .3s}
+.cacc{position:absolute;left:0;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.1);opacity:0;transition:opacity .3s}
 .cf-card.cf-active .cacc{opacity:1}
 
 .cin{display:grid;grid-template-columns:200px 1fr}
 .cm{background:rgba(188,202,255,.02);border-right:1px solid var(--bd);padding:24px 18px;display:flex;flex-direction:column}
 .cnum{font-size:52px;font-weight:900;letter-spacing:-.1em;color:rgba(49,130,246,.08);line-height:.88;margin-bottom:8px}
-.ctag{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--bluel);background:rgba(162,196,255,.10);border:1px solid rgba(162,196,255,.2);border-radius:4px;padding:3px 8px;margin-bottom:12px}
+.ctag{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--bluel);background:rgba(162,196,255,.10);border:1px solid rgba(162,196,255,.2);border-radius:5px;padding:3px 8px;margin-bottom:12px}
 .ctitle{font-size:clamp(15px,1.6vw,19px);font-weight:800;letter-spacing:-.04em;line-height:1.32;word-break:keep-all}
 .cb{padding:24px 22px}
 .cilist{display:flex;flex-direction:column;gap:16px;margin-bottom:20px}
@@ -563,39 +562,41 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 #dunamu .slbl{color:var(--bluel);background:rgba(162,196,255,.08);border-color:rgba(162,196,255,.15)}
 .pgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px;margin-top:52px}
 .pcard{
-  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
-  border-radius:22px;padding:28px 24px;
+  background:color-mix(in oklch, #3182f6 4%, #111113);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:12px;padding:28px 24px;
   display:flex;flex-direction:column;gap:14px;
   transition:border-color .35s,background .35s,transform .35s,box-shadow .35s;
   position:relative;overflow:hidden;
   cursor:pointer;
 }
-/* 카드 상단 그라디언트 헤더 */
+/* 카드 상단 그라디언트 헤더 — A안: 삭제 */
 .pcard::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:22px 22px 0 0;
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:12px 12px 0 0;
+  display:none;
 }
 .pcard-custody::after{background:linear-gradient(135deg,#1d4ed8,#3182f6)}
 .pcard-giwa::after{background:linear-gradient(135deg,#0d9488,#14b8a6)}
 .pcard-udc::after{background:linear-gradient(135deg,#6d28d9,#8b5cf6)}
-.pcard::before{content:'';position:absolute;inset:0;border-radius:22px;opacity:0;transition:opacity .4s;pointer-events:none}
+.pcard::before{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity .4s;pointer-events:none;display:none}
 /* hover → @media(hover:hover) 블록으로 이동됨 */
 .pcard:hover::before{opacity:1}
-.pcard-custody{border-color:rgba(49,130,246,.15)}
-.pcard-custody::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(49,130,246,.13) 0%,transparent 70%)}
-.pcard-custody:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 40px rgba(49,130,246,.18),inset 0 1px 0 rgba(49,130,246,.2)}
-.pcard-giwa{border-color:rgba(49,130,246,.15)}
-.pcard-giwa::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(49,130,246,.15) 0%,transparent 70%)}
-.pcard-giwa:hover{border-color:rgba(49,130,246,.4);background:rgba(49,130,246,.04);box-shadow:0 8px 40px rgba(49,130,246,.2),inset 0 1px 0 rgba(162,196,255,.2)}
-.pcard-udc{border-color:rgba(139,92,246,.15)}
-.pcard-udc::before{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(139,92,246,.15) 0%,transparent 70%)}
-.pcard-udc:hover{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.04);box-shadow:0 8px 40px rgba(139,92,246,.2),inset 0 1px 0 rgba(139,92,246,.2)}
+.pcard-custody{border-color:rgba(255,255,255,0.06);background:color-mix(in oklch, #3182f6 4%, #111113)}
+.pcard-custody::before{background:none}
+.pcard-custody:hover{border-color:rgba(255,255,255,0.12);background:color-mix(in oklch, #3182f6 6%, #111113);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.pcard-giwa{border-color:rgba(255,255,255,0.06);background:color-mix(in oklch, #14b8a6 4%, #111113)}
+.pcard-giwa::before{background:none}
+.pcard-giwa:hover{border-color:rgba(255,255,255,0.12);background:color-mix(in oklch, #14b8a6 6%, #111113);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.pcard-udc{border-color:rgba(255,255,255,0.06);background:color-mix(in oklch, #8b5cf6 4%, #111113)}
+.pcard-udc::before{background:none}
+.pcard-udc:hover{border-color:rgba(255,255,255,0.12);background:color-mix(in oklch, #8b5cf6 6%, #111113);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .pbadge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.45)}
 .pname{font-size:26px;font-weight:900;letter-spacing:-.055em;line-height:1;color:#fff}
-.phl{display:inline-block;font-size:10.5px;font-weight:700;color:#3182f6;background:rgba(49,130,246,0.1);border:1px solid rgba(49,130,246,0.22);border-radius:4px;padding:3px 9px}
+.phl{display:inline-block;font-size:10.5px;font-weight:700;color:#3182f6;background:rgba(49,130,246,0.1);border:1px solid rgba(49,130,246,0.22);border-radius:5px;padding:3px 9px}
 .pchall{font-size:12.5px;font-style:italic;color:rgba(255,255,255,0.35);border-left:2px solid rgba(49,130,246,.3);padding-left:11px;line-height:1.6;word-break:keep-all}
 .pdesc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.78;word-break:keep-all}
 .ptags{display:flex;flex-wrap:wrap;gap:5px}
-.pt{font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid;font-weight:500}
+.pt{font-size:11px;padding:3px 9px;border-radius:5px;border:1px solid;font-weight:500}
 .pto{color:#3182f6;border-color:rgba(49,130,246,.22);background:rgba(49,130,246,.06)}
 .ptb{color:var(--bluel);border-color:rgba(162,196,255,.2);background:rgba(162,196,255,.05)}
 .ptw{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
@@ -776,9 +777,17 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
 @supports not (backdrop-filter: blur(1px)) {
   nav.on{background:rgba(4,10,24,.97)}
   .show-card{background:rgba(12,18,32,.95)}
-  .sc-card{background:rgba(12,18,32,.90)}
   .cf-btn{background:rgba(4,10,24,.95)}
   .mobile-menu{background:rgba(4,10,24,.98)}
+}
+/* color-mix fallback for older browsers */
+@supports not (background: color-mix(in oklch, #000 50%, #fff)) {
+  .pcard-custody,.pcard{background:rgba(49,130,246,0.04)}
+  .pcard-custody:hover{background:rgba(49,130,246,0.06)}
+  .pcard-giwa{background:rgba(20,184,166,0.04)}
+  .pcard-giwa:hover{background:rgba(20,184,166,0.06)}
+  .pcard-udc{background:rgba(139,92,246,0.04)}
+  .pcard-udc:hover{background:rgba(139,92,246,0.06)}
 }
 /* ─── RESPONSIVE ────────────────────────────────── */
 @media(max-width:820px){
@@ -814,8 +823,8 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
   #hero-outer{height:220vh}
 }
 @media(hover:hover){
-  .sc-card:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.05)}
-  .pcard:hover{transform:translateY(-5px)}
+  .sc-card:hover{border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.035)}
+  .pcard:hover{transform:translateY(-3px)}
 }
 
 
