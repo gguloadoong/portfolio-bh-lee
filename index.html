@@ -97,22 +97,36 @@ img { max-width: 100%; height: auto; }
 /* ─── CARD ENHANCE FLASH ──────────────────────── */
 #card-flash {
   position:absolute;
-  width:80px; height:80px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(49,130,246,0.4) 40%, transparent 70%);
+  width:320px; height:200px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
   opacity:0;
   pointer-events:none;
   z-index:6;
   will-change:transform,opacity;
-  filter:blur(2px);
+}
+#card-flash::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:16px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(49,130,246,0.1) 50%, rgba(255,255,255,0.15) 100%);
+  opacity:0;
+  transition:opacity 0.1s;
 }
 #card-flash::after {
   content:'';
   position:absolute;
-  inset:-20px;
-  border-radius:50%;
-  background:radial-gradient(circle, transparent 30%, rgba(49,130,246,0.15) 60%, transparent 80%);
-  animation:none;
+  top:50%; left:50%;
+  width:200%; height:200%;
+  transform:translate(-50%,-50%);
+  background:
+    radial-gradient(ellipse 30% 80% at 30% 50%, rgba(255,255,255,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 30% at 50% 30%, rgba(255,255,255,0.15) 0%, transparent 60%),
+    conic-gradient(from 45deg, transparent 0deg, rgba(255,255,255,0.08) 20deg, transparent 40deg, transparent 160deg, rgba(255,255,255,0.06) 180deg, transparent 200deg);
+  opacity:0;
+  pointer-events:none;
 }
 @keyframes flashBurst {
   0% { transform:scale(0.3); opacity:0; }
@@ -915,8 +929,8 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
       <div class="mp-inner">
         <div class="mp-label">About</div>
         <h2 class="mp-title">이 포트폴리오에 대해서</h2>
-        <p class="mp-desc">회사 프로젝트를 포트폴리오에 그대로 담기는 어렵습니다. 대신, PM/PO로서의 <strong>문제 정의와 판단 과정</strong>을 보여줄 수 있는 <span style="white-space:nowrap">Claude Code</span> 기반 개인 프로젝트를 중심으로 구성했습니다.</p>
-        <p class="mp-desc">어떤 문제를 발견했고, 왜 중요하게 보았고, 어떤 가설로 해결책을 구체화했는지 — <strong>기획자로서의 사고 흐름</strong>이 보이도록 정리했습니다.</p>
+        <p class="mp-desc">회사 프로젝트를 포트폴리오에 그대로 담기는 어렵습니다. 대신, PM/PO로서의 <strong style="white-space:nowrap">문제 정의와 판단 과정</strong>을 보여줄 수 있는 <span style="white-space:nowrap">Claude Code</span> 기반 개인 프로젝트를 중심으로 구성했습니다.</p>
+        <p class="mp-desc">어떤 문제를 발견했고, 왜 중요하게 보았고, 어떤 가설로 해결책을 구체화했는지 — <strong style="white-space:nowrap">기획자로서의 사고 흐름</strong>이 보이도록 정리했습니다.</p>
         <p class="mp-desc">두나무에서 직접 기획한 <strong>업비트 커스터디</strong>, <strong>GIWA Wallet</strong>, <strong>UDC Wallet</strong> 경험도 함께 담아, 실제 서비스 기획과 연결했습니다.</p>
         <div class="mp-chips">
           <span class="chip">문제 정의</span>
@@ -1409,7 +1423,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
             <div class="tgdur">약 3년 5개월</div>
           </div>
           <div>
-            <div class="tgdesc">국내 1위 가상자산 거래소. <strong>법인·기관 대상 커스터디, Web3 Wallet App, Web3 Event Wallet</strong>까지 다양한 스케일의 프로덕트를 기획했다. Upbit Custody는 기획 전 과정을 리드했다.</div>
+            <div class="tgdesc">국내 1위 가상자산 거래소. <strong style="white-space:nowrap">법인·기관 대상 커스터디</strong>, <strong style="white-space:nowrap">Web3 Wallet App</strong>, <strong style="white-space:nowrap">Web3 Event Wallet</strong>까지 다양한 스케일의 프로덕트를 기획했다. Upbit Custody는 기획 전 과정을 리드했다.</div>
             <div class="tgprojs">
               <div class="tgproj"><span class="tgpn">Upbit Custody</span><span class="tgpd">기관용 가상자산 커스터디 기획 리드 (2024.12–2026.02)</span></div>
               <div class="tgproj"><span class="tgpn">GIWA Wallet</span><span class="tgpd">일반 사용자 중심 Web3 지갑 서비스 기획 (2024.10–2025.09)</span></div>
@@ -1586,12 +1600,12 @@ const PHASE = {
   TEXT_IN: 0.10,
   WHY_SHRINK_START: 0.12,
   WHY_SHRINK_END: 0.30,
-  CARD_STARTS: [0.22, 0.26, 0.30, 0.34],
+  CARD_STARTS: [0.14, 0.18, 0.22, 0.26],
   FLY_DUR: 0.12,
-  FLOAT_END: 0.54,
-  FLASH_START: 0.60,
-  FLASH_END: 0.66,
-  MERGE_END: 0.78,
+  FLOAT_END: 0.48,
+  FLASH_START: 0.54,
+  FLASH_END: 0.62,
+  MERGE_END: 0.75,
   TEXT_REVEAL: 0.60,
   GLOW_START: 0.85
 };
@@ -1739,7 +1753,7 @@ function heroScroll() {
       card.style.opacity = Math.min(1, ct * 2);
       card.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + sc + ')';
       card.dataset.floating = 'false';
-    } else if (p <= 0.54) {
+    } else if (p <= PHASE.FLOAT_END) {
       const fy = Math.sin(now * 0.002 + i * 1.5) * 6;
       const fx = Math.cos(now * 0.0015 + i * 2.0) * 3;
       const fr = Math.sin(now * 0.001 + i * 1.8) * 1.5;
@@ -1750,15 +1764,15 @@ function heroScroll() {
       card.dataset.gy = gridPos[i].y;
     } else if (p <= PHASE.FLASH_START) {
       // 카드가 중앙으로 빠르게 수렴
-      const mt = (p - 0.54) / 0.06;
+      const mt = (p - PHASE.FLOAT_END) / (PHASE.FLASH_START - PHASE.FLOAT_END);
       const me = easeOutQuad(mt);
-      card.style.opacity = 1 - me * 0.7;
-      card.style.transform = 'translate(' + (gridPos[i].x * (1 - me)) + 'px,' + (gridPos[i].y * (1 - me)) + 'px) scale(' + (1 - me * 0.6) + ')';
+      card.style.opacity = 1 - me * 0.5;
+      card.style.transform = 'translate(' + (gridPos[i].x * (1 - me)) + 'px,' + (gridPos[i].y * (1 - me)) + 'px) scale(' + (1 - me * 0.3) + ')';
       card.dataset.floating = 'false';
     } else if (p <= PHASE.FLASH_END) {
       // 카드 사라짐 (플래시 구간)
       card.style.opacity = 0;
-      card.style.transform = 'translate(0,0) scale(0.2)';
+      card.style.transform = 'translate(0,0) scale(0.5)';
       card.dataset.floating = 'false';
     } else {
       card.style.opacity = 0;
@@ -1766,30 +1780,49 @@ function heroScroll() {
     }
   }
 
-  /* Phase 5: 플래시 이펙트 */
+  /* Phase 5: 카드 강화 이펙트 */
   if (p < PHASE.FLASH_START) {
     cardFlash.style.opacity = 0;
-    cardFlash.style.transform = 'scale(0.3)';
+    cardFlash.style.transform = 'scale(0.6)';
+    cardFlash.style.cssText += ';--flash-glow:0';
   } else if (p <= PHASE.FLASH_END) {
-    const ft = (p - PHASE.FLASH_START) / 0.06;
-    if (ft < 0.4) {
-      // 수렴 → 밝아지며 커지기
-      const fe = ft / 0.4;
-      cardFlash.style.opacity = fe;
-      cardFlash.style.transform = 'scale(' + (0.3 + fe * 1.2) + ')';
-      cardFlash.style.filter = 'blur(0px)';
-      cardFlash.style.boxShadow = '0 0 ' + (fe * 60) + 'px ' + (fe * 30) + 'px rgba(255,255,255,' + (fe * 0.3) + '), 0 0 ' + (fe * 100) + 'px ' + (fe * 50) + 'px rgba(49,130,246,' + (fe * 0.15) + ')';
+    const ft = (p - PHASE.FLASH_START) / (PHASE.FLASH_END - PHASE.FLASH_START);
+    if (ft < 0.3) {
+      // 카드 형태로 등장 (면발광 시작)
+      const fe = ft / 0.3;
+      const eo = easeOutQuart(fe);
+      cardFlash.style.opacity = eo;
+      cardFlash.style.transform = 'scale(' + (0.6 + eo * 0.2) + ')';
+      cardFlash.style.background = 'rgba(255,255,255,' + (0.03 + eo * 0.08) + ')';
+      cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.1 + eo * 0.25) + ')';
+      cardFlash.style.boxShadow = '0 0 ' + (eo * 40) + 'px rgba(255,255,255,' + (eo * 0.15) + '), inset 0 0 ' + (eo * 60) + 'px rgba(255,255,255,' + (eo * 0.08) + ')';
+      // ::before 면발광
+      if (cardFlash.querySelector) {
+        cardFlash.style.setProperty('--glow', eo);
+      }
+    } else if (ft < 0.55) {
+      // 면발광 최대 + flare 번쩍
+      const fe2 = (ft - 0.3) / 0.25;
+      const flash = Math.sin(fe2 * Math.PI);
+      cardFlash.style.opacity = 1;
+      cardFlash.style.transform = 'scale(0.8)';
+      cardFlash.style.background = 'rgba(255,255,255,' + (0.1 + flash * 0.25) + ')';
+      cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.35 + flash * 0.3) + ')';
+      cardFlash.style.boxShadow = '0 0 ' + (60 + flash * 80) + 'px rgba(255,255,255,' + (0.2 + flash * 0.3) + '), inset 0 0 80px rgba(255,255,255,' + (0.1 + flash * 0.15) + '), 0 0 ' + (flash * 120) + 'px ' + (flash * 60) + 'px rgba(49,130,246,' + (flash * 0.1) + ')';
     } else {
-      // 터지며 사라지기
-      const fe2 = (ft - 0.4) / 0.6;
-      const burst = easeOutQuart(fe2);
-      cardFlash.style.opacity = 1 - burst;
-      cardFlash.style.transform = 'scale(' + (1.5 + burst * 3) + ')';
-      cardFlash.style.filter = 'blur(' + (burst * 16) + 'px)';
-      cardFlash.style.boxShadow = '0 0 ' + ((1 - burst) * 80) + 'px ' + ((1 - burst) * 40) + 'px rgba(255,255,255,' + ((1 - burst) * 0.2) + ')';
+      // 확장 → About 패널로 전환
+      const fe3 = (ft - 0.55) / 0.45;
+      const expand = easeOutQuart(fe3);
+      cardFlash.style.opacity = 1 - expand * 0.8;
+      cardFlash.style.transform = 'scale(' + (0.8 + expand * 1.8) + ')';
+      cardFlash.style.background = 'rgba(255,255,255,' + (0.1 * (1 - expand)) + ')';
+      cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.3 * (1 - expand)) + ')';
+      cardFlash.style.boxShadow = '0 0 ' + ((1 - expand) * 60) + 'px rgba(255,255,255,' + ((1 - expand) * 0.15) + ')';
+      cardFlash.style.filter = 'blur(' + (expand * 8) + 'px)';
     }
   } else {
     cardFlash.style.opacity = 0;
+    cardFlash.style.filter = '';
   }
 
   /* Phase 6: About 패널 slide-up (플래시 후) */
@@ -1858,7 +1891,7 @@ function startFloatLoop() {
   if (floatRafId) return;
   function loop() {
     const p = window.scrollY / maxScroll;
-    if ((p > 0.34 && p < PHASE.FLOAT_END) || p > 0.88) {
+    if ((p > 0.26 && p < PHASE.FLOAT_END) || p > 0.88) {
       heroScroll();
     }
     floatRafId = requestAnimationFrame(loop);
