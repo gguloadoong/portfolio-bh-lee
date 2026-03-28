@@ -1044,7 +1044,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
               <div class="cb">
                 <div class="cilist">
                   <div class="ci"><span class="cil">문제 정의</span><span class="cit">뉴스 클릭 시 외부 언론사 페이지로 이동. 사용자는 떠나고 돌아오지 않는다. 투자 판단에 필요한 정보가 흩어지고 서비스 안에서 경험이 완결되지 않는다.</span></div>
-                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">이탈을 막는 것보다 <strong>머물 이유</strong>를 만드는 게 먼저다. 외부 링크를 내부 Gemini 요약 페이지로 교체하고, 기사 요약에 그치지 않고 연관종목·연관뉴스를 함께 노출해 클릭 한 번으로 다음 탐색이 이어지도록 설계했다.</span></div>
+                  <div class="ci"><span class="cil">가설 · 판단</span><span class="cit">이탈을 막는 것보다 <strong style="white-space:nowrap">머물 이유</strong>를 만드는 게 먼저다. 외부 링크를 내부 Gemini 요약 페이지로 교체하고, 기사 요약에 그치지 않고 연관종목·연관뉴스를 함께 노출해 클릭 한 번으로 다음 탐색이 이어지도록 설계했다.</span></div>
                   <div class="ci"><span class="cil">기대되는 결과</span><span class="cit">뉴스를 읽고 바로 나가는 게 아니라, 관련 종목도 보고 다른 뉴스도 이어서 보게 되는 흐름이 생긴다.</span></div>
                 </div>
                 <div class="flow-diagram">
@@ -1600,12 +1600,12 @@ const PHASE = {
   TEXT_IN: 0.10,
   WHY_SHRINK_START: 0.12,
   WHY_SHRINK_END: 0.30,
-  CARD_STARTS: [0.14, 0.18, 0.22, 0.26],
-  FLY_DUR: 0.12,
-  FLOAT_END: 0.48,
-  FLASH_START: 0.54,
-  FLASH_END: 0.62,
-  MERGE_END: 0.75,
+  CARD_STARTS: [0.18, 0.22, 0.26, 0.30],
+  FLY_DUR: 0.10,
+  FLOAT_END: 0.50,
+  CONVERGE_END: 0.58,
+  TREMBLE_END: 0.68,
+  MERGE_END: 0.80,
   TEXT_REVEAL: 0.60,
   GLOW_START: 0.85
 };
@@ -1686,6 +1686,7 @@ const FLY_DUR = PHASE.FLY_DUR;
 function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
 function easeOutBack(t) { const c1=1.70158,c3=c1+1; return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2); }
 function easeOutQuad(t) { return 1 - Math.pow(1 - t, 2); }
+function easeInOutQuart(t) { return t < 0.5 ? 8*t*t*t*t : 1 - Math.pow(-2*t+2, 4)/2; }
 
 /* 메인 스크롤 핸들러 */
 function heroScroll() {
@@ -1762,17 +1763,18 @@ function heroScroll() {
       card.dataset.floating = 'true';
       card.dataset.gx = gridPos[i].x;
       card.dataset.gy = gridPos[i].y;
-    } else if (p <= PHASE.FLASH_START) {
-      // 카드가 중앙으로 빠르게 수렴
-      const mt = (p - PHASE.FLOAT_END) / (PHASE.FLASH_START - PHASE.FLOAT_END);
-      const me = easeOutQuad(mt);
-      card.style.opacity = 1 - me * 0.5;
-      card.style.transform = 'translate(' + (gridPos[i].x * (1 - me)) + 'px,' + (gridPos[i].y * (1 - me)) + 'px) scale(' + (1 - me * 0.3) + ')';
+    } else if (p <= PHASE.CONVERGE_END) {
+      // 카드가 중앙으로 부드럽게 수렴
+      const mt = (p - PHASE.FLOAT_END) / (PHASE.CONVERGE_END - PHASE.FLOAT_END);
+      const me = easeOutQuart(mt);
+      card.style.opacity = 1 - me * 0.6;
+      card.style.transform = 'translate(' + (gridPos[i].x * (1 - me)) + 'px,' + (gridPos[i].y * (1 - me)) + 'px) scale(' + (1 - me * 0.25) + ')';
       card.dataset.floating = 'false';
-    } else if (p <= PHASE.FLASH_END) {
-      // 카드 사라짐 (플래시 구간)
-      card.style.opacity = 0;
-      card.style.transform = 'translate(0,0) scale(0.5)';
+    } else if (p <= PHASE.TREMBLE_END) {
+      // 카드 완전 사라짐 (강화 카드로 대체)
+      const fadeT = (p - PHASE.CONVERGE_END) / 0.03;
+      card.style.opacity = Math.max(0, 1 - fadeT) * 0.4;
+      card.style.transform = 'translate(0,0) scale(0.75)';
       card.dataset.floating = 'false';
     } else {
       card.style.opacity = 0;
@@ -1780,67 +1782,73 @@ function heroScroll() {
     }
   }
 
-  /* Phase 5: 카드 강화 이펙트 */
-  if (p < PHASE.FLASH_START) {
+  /* Phase 5: 카드 강화 이펙트 (수렴→면발광→떨림→확장) */
+  if (p < PHASE.CONVERGE_END) {
     cardFlash.style.opacity = 0;
-    cardFlash.style.transform = 'scale(0.6)';
-    cardFlash.style.cssText += ';--flash-glow:0';
-  } else if (p <= PHASE.FLASH_END) {
-    const ft = (p - PHASE.FLASH_START) / (PHASE.FLASH_END - PHASE.FLASH_START);
-    if (ft < 0.3) {
-      // 카드 형태로 등장 (면발광 시작)
-      const fe = ft / 0.3;
-      const eo = easeOutQuart(fe);
-      cardFlash.style.opacity = eo;
-      cardFlash.style.transform = 'scale(' + (0.6 + eo * 0.2) + ')';
-      cardFlash.style.background = 'rgba(255,255,255,' + (0.03 + eo * 0.08) + ')';
-      cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.1 + eo * 0.25) + ')';
-      cardFlash.style.boxShadow = '0 0 ' + (eo * 40) + 'px rgba(255,255,255,' + (eo * 0.15) + '), inset 0 0 ' + (eo * 60) + 'px rgba(255,255,255,' + (eo * 0.08) + ')';
-      // ::before 면발광
-      if (cardFlash.querySelector) {
-        cardFlash.style.setProperty('--glow', eo);
-      }
-    } else if (ft < 0.55) {
-      // 면발광 최대 + flare 번쩍
-      const fe2 = (ft - 0.3) / 0.25;
-      const flash = Math.sin(fe2 * Math.PI);
-      cardFlash.style.opacity = 1;
-      cardFlash.style.transform = 'scale(0.8)';
-      cardFlash.style.background = 'rgba(255,255,255,' + (0.1 + flash * 0.25) + ')';
-      cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.35 + flash * 0.3) + ')';
-      cardFlash.style.boxShadow = '0 0 ' + (60 + flash * 80) + 'px rgba(255,255,255,' + (0.2 + flash * 0.3) + '), inset 0 0 80px rgba(255,255,255,' + (0.1 + flash * 0.15) + '), 0 0 ' + (flash * 120) + 'px ' + (flash * 60) + 'px rgba(49,130,246,' + (flash * 0.1) + ')';
-    } else {
-      // 확장 → About 패널로 전환
-      const fe3 = (ft - 0.55) / 0.45;
-      const expand = easeOutQuart(fe3);
-      cardFlash.style.opacity = 1 - expand * 0.8;
-      cardFlash.style.transform = 'scale(' + (0.8 + expand * 1.8) + ')';
-      cardFlash.style.background = 'rgba(255,255,255,' + (0.1 * (1 - expand)) + ')';
-      cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.3 * (1 - expand)) + ')';
-      cardFlash.style.boxShadow = '0 0 ' + ((1 - expand) * 60) + 'px rgba(255,255,255,' + ((1 - expand) * 0.15) + ')';
-      cardFlash.style.filter = 'blur(' + (expand * 8) + 'px)';
-    }
+    cardFlash.style.transform = 'scale(0.5)';
+  } else if (p <= PHASE.TREMBLE_END) {
+    // ── 면발광 + 떨림 (강화 대기) ──
+    const ft = (p - PHASE.CONVERGE_END) / (PHASE.TREMBLE_END - PHASE.CONVERGE_END);
+    const glow = easeOutQuart(Math.min(ft * 2, 1)); // 전반부에 빠르게 밝아짐
+    
+    // 떨림 (고주파 진동, 점점 강해짐)
+    const trembleAmp = ft * 4;
+    const trembleX = Math.sin(now * 0.025 + 1.0) * trembleAmp;
+    const trembleY = Math.cos(now * 0.030 + 2.0) * trembleAmp * 0.7;
+    const trembleR = Math.sin(now * 0.020 + 0.5) * trembleAmp * 0.3;
+    
+    // 펄스 (숨쉬듯 밝기 변화)
+    const pulse = Math.sin(now * 0.008) * 0.5 + 0.5;
+    const pulseGlow = 0.03 + glow * 0.08 + pulse * glow * 0.06;
+    
+    cardFlash.style.opacity = glow;
+    cardFlash.style.transform = 'translate(' + trembleX + 'px,' + trembleY + 'px) rotate(' + trembleR + 'deg) scale(' + (0.7 + glow * 0.1) + ')';
+    cardFlash.style.background = 'rgba(255,255,255,' + pulseGlow + ')';
+    cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.1 + glow * 0.2 + pulse * glow * 0.15) + ')';
+    cardFlash.style.boxShadow = 
+      '0 0 ' + (glow * 50 + pulse * 30) + 'px rgba(255,255,255,' + (glow * 0.12 + pulse * 0.08) + '),' +
+      'inset 0 0 ' + (glow * 40) + 'px rgba(255,255,255,' + (glow * 0.06) + '),' +
+      '0 0 ' + (pulse * glow * 80) + 'px ' + (pulse * glow * 20) + 'px rgba(49,130,246,' + (pulse * glow * 0.06) + ')';
+    cardFlash.style.filter = '';
+  } else if (p <= PHASE.MERGE_END) {
+    // ── 확장 → About 패널로 변신 ──
+    const et = (p - PHASE.TREMBLE_END) / (PHASE.MERGE_END - PHASE.TREMBLE_END);
+    const expand = easeOutQuart(et);
+    
+    // 카드가 패널 크기로 서서히 확장
+    const scaleX = 1 + expand * 1.6;  // 가로 더 많이
+    const scaleY = 1 + expand * 1.2;
+    
+    // 마지막 번쩍 (확장 시작 시)
+    const lastFlash = et < 0.15 ? Math.sin(et / 0.15 * Math.PI) : 0;
+    
+    cardFlash.style.opacity = 1 - expand * 0.9;
+    cardFlash.style.transform = 'scale(' + scaleX + ',' + scaleY + ')';
+    cardFlash.style.background = 'rgba(255,255,255,' + (0.1 * (1 - expand) + lastFlash * 0.2) + ')';
+    cardFlash.style.borderColor = 'rgba(255,255,255,' + (0.3 * (1 - expand)) + ')';
+    cardFlash.style.boxShadow = '0 0 ' + ((1 - expand) * 40 + lastFlash * 60) + 'px rgba(255,255,255,' + ((1 - expand) * 0.1 + lastFlash * 0.2) + ')';
+    cardFlash.style.filter = 'blur(' + (expand * 6) + 'px)';
   } else {
     cardFlash.style.opacity = 0;
     cardFlash.style.filter = '';
   }
 
-  /* Phase 6: About 패널 slide-up (플래시 후) */
-  if (p < PHASE.FLASH_END) {
-    mergedPanel.style.transform = 'translateY(60px)';
+  /* Phase 6: About 패널 등장 (카드 확장과 동시) */
+  if (p < PHASE.TREMBLE_END) {
+    mergedPanel.style.transform = 'translateY(40px) scale(0.95)';
     mergedPanel.style.opacity = 0;
   } else if (p <= PHASE.MERGE_END) {
-    const pt = (p - PHASE.FLASH_END) / (PHASE.MERGE_END - PHASE.FLASH_END);
+    const pt = (p - PHASE.TREMBLE_END) / (PHASE.MERGE_END - PHASE.TREMBLE_END);
     const pe = easeOutQuart(pt);
-    mergedPanel.style.transform = 'translateY(' + (60 * (1 - pe)) + 'px)';
+    mergedPanel.style.transform = 'translateY(' + (40 * (1 - pe)) + 'px) scale(' + (0.95 + pe * 0.05) + ')';
     mergedPanel.style.opacity = pe;
   } else {
-    mergedPanel.style.transform = 'translateY(0)';
+    mergedPanel.style.transform = 'translateY(0) scale(1)';
     mergedPanel.style.opacity = 1;
   }
 
   /* Phase 7: 패널 텍스트 순차 등장 */
-  const textStartP = PHASE.FLASH_END + 0.02;
+  const textStartP = PHASE.TREMBLE_END + 0.06;
   if (p < textStartP) {
     for (let j = 0; j < panelTextEls.length; j++) {
       panelTextEls[j].style.opacity = 0;
@@ -1891,7 +1899,7 @@ function startFloatLoop() {
   if (floatRafId) return;
   function loop() {
     const p = window.scrollY / maxScroll;
-    if ((p > 0.26 && p < PHASE.FLOAT_END) || p > 0.88) {
+    if ((p > 0.30 && p < PHASE.FLOAT_END) || (p > PHASE.CONVERGE_END && p < PHASE.MERGE_END) || p > 0.90) {
       heroScroll();
     }
     floatRafId = requestAnimationFrame(loop);
