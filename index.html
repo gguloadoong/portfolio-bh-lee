@@ -196,22 +196,19 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   background:rgba(255,255,255,0.04);
   border:1px solid rgba(255,255,255,0.10);
   border-radius:12px; text-align:center;
-  backdrop-filter:blur(8px);
-  box-shadow:0 12px 40px rgba(0,0,0,0.3);
+  box-shadow:0 8px 24px rgba(0,0,0,0.4);
   opacity:0;
   will-change:transform,opacity;
   z-index:5;
   overflow:hidden;
 }
 .show-card::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0;
-  height:3px;
+  display:none;
 }
-#sc0::before { background:#3182f6; }
-#sc1::before { background:#3182f6; }
-#sc2::before { background:#7c3aed; }
-#sc3::before { background:#059669; }
+/* sc0 라인 삭제 */
+/* sc1 라인 삭제 */
+/* sc2 라인 삭제 */
+/* sc3 라인 삭제 */
 
 .sc-img {
   width: 100%;
@@ -334,11 +331,11 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   transition:border-color .35s,background .35s;
 }
 .sc-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0;
+  content:'';position:absolute;top:16px;left:0;bottom:16px;width:2px;border-radius:1px;
 }
-.sc-card:nth-child(1)::before{background:linear-gradient(90deg,#3182f6,#a2c4ff)}
-.sc-card:nth-child(2)::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
-.sc-card:nth-child(3)::before{background:linear-gradient(90deg,#059669,#34d399)}
+.sc-card:nth-child(1)::before{background:var(--blue)}
+.sc-card:nth-child(2)::before{background:var(--blue);opacity:.5}
+.sc-card:nth-child(3)::before{background:var(--blue);opacity:.3}
 /* hover → @media(hover:hover) 블록으로 이동됨 */
 .sc-num{font-size:10px;font-weight:700;color:var(--bluel);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
 .sc-title{font-size:17px;font-weight:800;letter-spacing:-.04em;margin-bottom:12px;line-height:1.25;color:var(--t);word-break:keep-all}
@@ -499,8 +496,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   height:44px;
   border-radius:50%;
   border:1px solid rgba(255,255,255,0.15);
-  background:rgba(4,10,24,0.85);
-  backdrop-filter:blur(8px);
+  background:rgba(4,10,24,0.92);
   color:#fff;
   font-size:16px;
   cursor:pointer;
