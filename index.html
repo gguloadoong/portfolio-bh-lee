@@ -538,6 +538,7 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
 /* ─── FLOW VISUALIZATION ──────────────────────── */
 
 /* ─── FLOW DIAGRAM (Before/After) ─────────────── */
+.flow-diagram[onclick]:hover::after{content:"클릭하여 실제 화면 보기 →";position:absolute;bottom:8px;right:8px;font-size:11px;font-weight:600;color:var(--blue);background:rgba(4,10,24,.85);padding:4px 10px;border-radius:6px;border:1px solid rgba(49,130,246,.2);pointer-events:none}
 .flow-diagram{display:grid;grid-template-columns:1fr 1.6fr;gap:16px;align-items:start}
 @media(max-width:1024px){
   #sc-cards{grid-template-columns:repeat(2,1fr)}
@@ -546,7 +547,8 @@ nav.on{background:rgba(4,10,24,.92);backdrop-filter:blur(24px);border-bottom:1px
   .tginner{grid-template-columns:200px 1fr;gap:32px}
 }
 @media(max-width:820px){
-  .nav-toggle{display:flex;flex-direction:column;justify-content:center}.ncta{display:none}.flow-diagram{grid-template-columns:1fr}}
+  .nav-toggle{display:flex;flex-direction:column;justify-content:center}.ncta{display:none}.flow-diagram[onclick]:hover::after{content:"클릭하여 실제 화면 보기 →";position:absolute;bottom:8px;right:8px;font-size:11px;font-weight:600;color:var(--blue);background:rgba(4,10,24,.85);padding:4px 10px;border-radius:6px;border:1px solid rgba(49,130,246,.2);pointer-events:none}
+.flow-diagram{grid-template-columns:1fr}}
 .flow-col{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 14px;border-radius:12px;transition:border-color .3s}
 .flow-col.before{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.1)}
 .flow-col.after{background:rgba(49,130,246,0.04);border:1px solid rgba(49,130,246,0.15)}
@@ -1247,6 +1249,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
                 <div>
                   <div class="ctag">정보 위계 설계</div>
                   <h3 class="ctitle" style="margin:0">"데이터는 다 있는데<br>읽히지 않는 화면"</h3>
+                  <a href="#" onclick="document.getElementById('caseModal5').classList.add('open');document.body.style.overflow='hidden';return false" style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--blue);text-decoration:none;margin-top:8px;font-weight:600;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">실제 화면 보기 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
                 </div>
               </div>
               <div class="cb">
@@ -1315,7 +1318,7 @@ footer{border-top:1px solid var(--bd);padding:64px 0 0;background:var(--bg)}
                   <div class="ci"><span class="cil">판단</span><span class="cit">외부 이탈 자체보다, 돌아올 이유가 없다는 게 문제였습니다. 기사를 인앱에서 보여주되 AI 요약과 연관종목·연관뉴스를 함께 붙이면, 뉴스 하나가 다음 탐색의 시작점이 됩니다.</span></div>
                   <div class="ci"><span class="cil">결과</span><span class="cit">뉴스 상세를 인앱 페이지로 전환하고 Gemini 요약 + 연관종목 + 연관뉴스를 배치했습니다. 이탈 포인트였던 뉴스 클릭이 서비스 안에서 순환 탐색으로 이어지는 구조가 됐습니다.</span></div>
                 </div>
-                <div class="flow-diagram">
+<div class="flow-diagram" onclick="document.getElementById('caseModal5').classList.add('open');document.body.style.overflow='hidden'" style="cursor:pointer;position:relative">
                   <div class="flow-col before">
                     <div class="flow-label bad">Before</div>
                     <div class="flow-step">뉴스 클릭</div>
